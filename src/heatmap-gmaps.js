@@ -148,7 +148,7 @@ HeatmapOverlay.prototype.setDataSet = function(data){
     this.draw(true);
 }
 
-HeatmapOverlay.prototype.addDataPoint = function(lat, lng, count){
+HeatmapOverlay.prototype.addDataPoint = function(lat, lng, count, redraw){
 
     var projection = this.getProjection(),
         latlng = new google.maps.LatLng(lat, lng),
@@ -156,6 +156,10 @@ HeatmapOverlay.prototype.addDataPoint = function(lat, lng, count){
     
     this.heatmap.store.addDataPoint(point.x, point.y, count);
     this.latlngs.push({ latlng: latlng, c: count });
+
+    if(redraw == true){ 
+     	this.draw(true);
+    }
 }
 
 HeatmapOverlay.prototype.toggle = function(){
